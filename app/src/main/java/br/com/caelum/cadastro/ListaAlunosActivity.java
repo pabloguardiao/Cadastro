@@ -12,15 +12,20 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ListaAlunosActivity extends AppCompatActivity {
+
+    public List<Aluno> alunos = new ArrayList<Aluno>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lista_alunos);
 
-        String[] alunos = {"Anderson", "Filipe", "Guilherme"};
-        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+//        List<Aluno> alunos = new AlunoDAO(this).getLista();
+        final ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this,
                 android.R.layout.simple_list_item_1, alunos);
 
         ListView listaAlunos = (ListView)findViewById(R.id.lista_alunos);
@@ -36,8 +41,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         listaAlunos.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                String aluno = adapter.getItem(position);
-                Toast.makeText(ListaAlunosActivity.this, "Clique long: " + aluno, Toast.LENGTH_LONG).show();
+                Aluno aluno = adapter.getItem(position);
+                Toast.makeText(ListaAlunosActivity.this, "Clique long: " + aluno.getNome(), Toast.LENGTH_LONG).show();
                 return false;
             }
         });
@@ -52,4 +57,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        alunos.clear();
+        alunos.addAll(new AlunoDAO(this).getLista());
+
+    }
 }

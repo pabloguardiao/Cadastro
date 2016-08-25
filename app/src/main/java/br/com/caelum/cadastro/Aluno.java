@@ -1,5 +1,7 @@
 package br.com.caelum.cadastro;
 
+import android.content.ContentValues;
+
 /**
  * Created by android6519 on 24/08/16.
  */
@@ -57,5 +59,21 @@ public class Aluno {
 
     public void setNota(Double nota) {
         this.nota = nota;
+    }
+
+    public ContentValues toContentValues() {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("nome", getNome());
+        contentValues.put("telefone", getNome());
+        contentValues.put("endereco", getEndereco());
+        contentValues.put("site", getSite());
+        contentValues.put("nota", getNota());
+
+        return contentValues;
+    }
+
+    @Override
+    public String toString() {
+        return getNome();
     }
 }

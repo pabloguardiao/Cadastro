@@ -4,7 +4,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 public class FormularioActivity extends AppCompatActivity {
 
@@ -13,7 +12,6 @@ public class FormularioActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -26,8 +24,16 @@ public class FormularioActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_formulario_ok){
-            Toast.makeText(getApplicationContext(), "OK Clicado", Toast.LENGTH_SHORT).show();
-            finish();
+            FormularioHelper helper = new FormularioHelper(this);
+            if (helper.temNome()) {
+                Aluno aluno = helper.carregarAlunoDoFormulario();
+                AlunoDAO dao = new AlunoDAO(this);
+                dao.inserir(aluno);
+                dao.close();
+                finish();
+            } else {
+                helper.mostrarErro();
+            }
             return false;
         } else {
             return super.onOptionsItemSelected(item);

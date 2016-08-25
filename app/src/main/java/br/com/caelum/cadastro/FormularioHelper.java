@@ -36,4 +36,12 @@ public class FormularioHelper {
         aluno.setNota(new Double(rbNota.getRating()));
         return aluno;
     }
+
+    public boolean temNome() {
+        return !txNome.getText().toString().isEmpty();
+    }
+
+    public void mostrarErro() {
+        txNome.setError("O campo nome nao pode ser vazio!");
+    }
 }
