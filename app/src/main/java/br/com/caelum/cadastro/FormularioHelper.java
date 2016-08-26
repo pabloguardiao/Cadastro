@@ -37,6 +37,15 @@ public class FormularioHelper {
         return aluno;
     }
 
+    public void carregarAlunoParaFormulario(Aluno aluno1) {
+        this.aluno = aluno1;
+        txNome.setText(aluno.getNome());
+        txTelefone.setText(aluno.getTelefone());
+        txSite.setText(aluno.getSite());
+        txEndereco.setText(aluno.getEndereco());
+        rbNota.setRating(aluno.getNota().floatValue());
+    }
+
     public boolean temNome() {
         return !txNome.getText().toString().isEmpty();
     }

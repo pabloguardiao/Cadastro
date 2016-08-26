@@ -34,7 +34,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         listaAlunos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(ListaAlunosActivity.this, "Posicao selecionada: " + position, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ListaAlunosActivity.this, "Posicao selecionada: " + position, Toast.LENGTH_SHORT).show();
+//                Intent intent = new Intent(ListaAlunosActivity.this, FormularioActivity.class);
+//                intent.setData();
+//                startActivity(intent);
             }
         });
 
@@ -43,7 +46,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
                 Aluno aluno = adapter.getItem(position);
                 Toast.makeText(ListaAlunosActivity.this, "Clique long: " + aluno.getNome(), Toast.LENGTH_LONG).show();
-                return false;
+                return true;
             }
         });
 

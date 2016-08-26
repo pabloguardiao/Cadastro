@@ -7,10 +7,14 @@ import android.view.MenuItem;
 
 public class FormularioActivity extends AppCompatActivity {
 
+    private FormularioHelper helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
+
+        helper = new FormularioHelper(this);
     }
 
     @Override
@@ -24,11 +28,11 @@ public class FormularioActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.menu_formulario_ok){
-            FormularioHelper helper = new FormularioHelper(this);
+
             if (helper.temNome()) {
                 Aluno aluno = helper.carregarAlunoDoFormulario();
                 AlunoDAO dao = new AlunoDAO(this);
-                dao.inserir(aluno);
+                dao.salvar(aluno);
                 dao.close();
                 finish();
             } else {
