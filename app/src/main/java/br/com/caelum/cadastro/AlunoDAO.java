@@ -41,12 +41,16 @@ public class AlunoDAO extends SQLiteOpenHelper {
         }
     }
 
-    public void salvar(Aluno aluno){
-        if (aluno.getId() == null || aluno.getId() == 0) {
-            getWritableDatabase().insert(TABELA, null, aluno.toContentValues());
-        } else {
-            getWritableDatabase().update(TABELA, aluno.toContentValues(), "where id = ?", new String[]{aluno.getId().toString()});
-        }
+    public void inserir(Aluno aluno){
+        SQLiteDatabase db = getWritableDatabase();
+        db.insert(TABELA, null, aluno.toContentValues());
+        db.close();
+    }
+
+    public void alterar(Aluno aluno){
+        SQLiteDatabase db = getWritableDatabase();
+        db.update(TABELA, aluno.toContentValues(), "id = ?", new String[]{aluno.getId().toString()});
+        db.close();
     }
 
     public List<Aluno> getLista() {
@@ -59,7 +63,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             alunoAux.setId(c.getLong(c.getColumnIndex("id")));
             alunoAux.setNome(c.getString(c.getColumnIndex("nome")));
             alunoAux.setEndereco(c.getString(c.getColumnIndex("endereco")));
-            alunoAux.setTelefone(c.getString(c.getColumnIndex("nome")));
+            alunoAux.setTelefone(c.getString(c.getColumnIndex("telefone")));
             alunoAux.setSite(c.getString(c.getColumnIndex("site")));
             alunoAux.setNota(c.getDouble(c.getColumnIndex("nota")));
 
@@ -67,5 +71,11 @@ public class AlunoDAO extends SQLiteOpenHelper {
         }
         c.close();
         return lista;
+    }
+
+    public void remover(Aluno aluno) {
+        SQLiteDatabase db = getWritableDatabase();
+        db.delete(TABELA, "id=?", new String[]{aluno.getId().toString()});
+        db.close();
     }
 }

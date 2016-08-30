@@ -13,8 +13,12 @@ public class FormularioActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_formulario);
-
         helper = new FormularioHelper(this);
+
+        Aluno a = (Aluno) getIntent().getSerializableExtra(Aluno.class.getName());
+        if (a != null) {
+            helper.colocarAlunoNoFormulario(a);
+        }
     }
 
     @Override
@@ -32,8 +36,11 @@ public class FormularioActivity extends AppCompatActivity {
             if (helper.temNome()) {
                 Aluno aluno = helper.carregarAlunoDoFormulario();
                 AlunoDAO dao = new AlunoDAO(this);
-                dao.salvar(aluno);
-                dao.close();
+                if (aluno.getId()!= null) {
+                    dao.alterar(aluno);
+                } else {
+                    dao.inserir(aluno);
+                }
                 finish();
             } else {
                 helper.mostrarErro();

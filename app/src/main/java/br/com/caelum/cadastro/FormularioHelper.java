@@ -37,7 +37,7 @@ public class FormularioHelper {
         return aluno;
     }
 
-    public void carregarAlunoParaFormulario(Aluno aluno1) {
+    public void colocarAlunoNoFormulario(Aluno aluno1) {
         this.aluno = aluno1;
         txNome.setText(aluno.getNome());
         txTelefone.setText(aluno.getTelefone());

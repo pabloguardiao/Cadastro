@@ -2,10 +2,12 @@ package br.com.caelum.cadastro;
 
 import android.content.ContentValues;
 
+import java.io.Serializable;
+
 /**
  * Created by android6519 on 24/08/16.
  */
-public class Aluno {
+public class Aluno implements Serializable {
     private Long id;
     private String nome;
     private String telefone;
@@ -64,7 +66,7 @@ public class Aluno {
     public ContentValues toContentValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nome", getNome());
-        contentValues.put("telefone", getNome());
+        contentValues.put("telefone", getTelefone());
         contentValues.put("endereco", getEndereco());
         contentValues.put("site", getSite());
         contentValues.put("nota", getNota());
