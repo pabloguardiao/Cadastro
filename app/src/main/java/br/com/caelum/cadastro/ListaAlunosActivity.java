@@ -73,11 +73,6 @@ public class ListaAlunosActivity extends AppCompatActivity {
         carregarLista();
     }
 
-    private void carregarLista() {
-        alunos.clear();
-        alunos.addAll(new AlunoDAO(this).getLista());
-    }
-
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
@@ -134,4 +129,11 @@ public class ListaAlunosActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void carregarLista() {
+        alunos.clear();
+        alunos.addAll(new AlunoDAO(this).getLista());
+    }
+
+    
 }
