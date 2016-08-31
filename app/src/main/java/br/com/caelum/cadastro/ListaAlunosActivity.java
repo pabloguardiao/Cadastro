@@ -2,7 +2,9 @@ package br.com.caelum.cadastro;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -128,6 +130,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        Permissao.verificarPermissao(this);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+        }
     }
 
     private void carregarLista() {
@@ -135,5 +146,4 @@ public class ListaAlunosActivity extends AppCompatActivity {
         alunos.addAll(new AlunoDAO(this).getLista());
     }
 
-    
 }
