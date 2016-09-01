@@ -1,8 +1,11 @@
 package br.com.caelum.cadastro;
 
 import android.app.Activity;
-import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 
 /**
@@ -17,6 +20,8 @@ public class FormularioHelper {
     private EditText txSite;
     private EditText txEndereco;
     private RatingBar rbNota;
+    private ImageView ivFoto;
+    private Button btFoto;
 
     public FormularioHelper(Activity activity) {
         txNome = (EditText)activity.findViewById(R.id.nome);
@@ -24,6 +29,8 @@ public class FormularioHelper {
         txSite= (EditText)activity.findViewById(R.id.site);
         txEndereco = (EditText)activity.findViewById(R.id.endereco);
         rbNota = (RatingBar) activity.findViewById(R.id.avaliacao);
+        ivFoto = (ImageView) activity.findViewById(R.id.formulario_foto);
+        btFoto = (Button) activity.findViewById(R.id.formulario_foto_button);
 
         aluno = new Aluno();
     }
@@ -34,6 +41,7 @@ public class FormularioHelper {
         aluno.setSite(txSite.getText().toString());
         aluno.setEndereco(txEndereco.getText().toString());
         aluno.setNota(new Double(rbNota.getRating()));
+        aluno.setCaminhoFoto((String)ivFoto.getTag());
         return aluno;
     }
 
@@ -44,6 +52,8 @@ public class FormularioHelper {
         txSite.setText(aluno.getSite());
         txEndereco.setText(aluno.getEndereco());
         rbNota.setRating(aluno.getNota().floatValue());
+        ivFoto.setImageBitmap(BitmapFactory.decodeFile(aluno.getCaminhoFoto()));
+
     }
 
     public boolean temNome() {
@@ -52,5 +62,22 @@ public class FormularioHelper {
 
     public void mostrarErro() {
         txNome.setError("O campo nome nao pode ser vazio!");
+    }
+
+    public Button getBtFoto() {
+        return btFoto;
+    }
+
+    public ImageView getIvFoto() {
+        return ivFoto;
+    }
+
+    public void carregarImagem(String localArquivoFoto) {
+        Bitmap imgFoto = BitmapFactory.decodeFile(localArquivoFoto);
+        Bitmap imgMenor = Bitmap.createScaledBitmap(imgFoto, imgFoto.getWidth(), 300, true);
+        imgFoto.recycle();
+        ivFoto.setImageBitmap(imgMenor);
+        ivFoto.setTag(localArquivoFoto);
+        ivFoto.setScaleType(ImageView.ScaleType.FIT_XY);
     }
 }

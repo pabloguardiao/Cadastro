@@ -1,13 +1,21 @@
 package br.com.caelum.cadastro;
 
+import android.content.Intent;
+import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+
+import java.io.File;
 
 public class FormularioActivity extends AppCompatActivity {
 
     private FormularioHelper helper;
+    private String localArquivoFoto;
+    private static final int CODE = 123;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +26,29 @@ public class FormularioActivity extends AppCompatActivity {
         Aluno a = (Aluno) getIntent().getSerializableExtra(Aluno.class.getName());
         if (a != null) {
             helper.colocarAlunoNoFormulario(a);
+        }
+
+        helper.getBtFoto().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                localArquivoFoto = getExternalCacheDir() + "/" + System.currentTimeMillis() + ".jpg";
+                Uri localFoto = Uri.fromFile(new File(localArquivoFoto));
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, localFoto);
+                startActivityForResult(intent, CODE);
+            }
+        });
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CODE) {
+            if (resultCode == RESULT_OK) {
+                helper.carregarImagem(this.localArquivoFoto);
+            } else {
+                localArquivoFoto = null;
+            }
         }
     }
 

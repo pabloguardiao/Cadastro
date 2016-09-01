@@ -14,6 +14,7 @@ public class Aluno implements Serializable {
     private String endereco;
     private String site;
     private Double nota;
+    private String caminhoFoto;
 
     public Long getId() {
         return id;
@@ -37,6 +38,10 @@ public class Aluno implements Serializable {
 
     public Double getNota() {
         return nota;
+    }
+
+    public String getCaminhoFoto() {
+        return caminhoFoto;
     }
 
     public void setId(Long id) {
@@ -63,6 +68,10 @@ public class Aluno implements Serializable {
         this.nota = nota;
     }
 
+    public void setCaminhoFoto(String caminhoFoto) {
+        this.caminhoFoto = caminhoFoto;
+    }
+
     public ContentValues toContentValues() {
         ContentValues contentValues = new ContentValues();
         contentValues.put("nome", getNome());
@@ -70,6 +79,7 @@ public class Aluno implements Serializable {
         contentValues.put("endereco", getEndereco());
         contentValues.put("site", getSite());
         contentValues.put("nota", getNota());
+        contentValues.put("caminhoFoto", getCaminhoFoto());
 
         return contentValues;
     }

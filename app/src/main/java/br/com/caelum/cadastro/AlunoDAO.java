@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class AlunoDAO extends SQLiteOpenHelper {
 
-    private static final int VERSAO = 1;
+    private static final int VERSAO = 2;
     private static final String DATABASE = "CadastroCaelum";
     private static final String TABELA = "aluno";
 
@@ -37,7 +37,8 @@ public class AlunoDAO extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if (newVersion == 2) {
-
+            String sql = "ALTER TABLE " + TABELA + " ADD COLUMN caminhoFoto TEXT; ";
+            db.execSQL(sql);
         }
     }
 
@@ -66,6 +67,7 @@ public class AlunoDAO extends SQLiteOpenHelper {
             alunoAux.setTelefone(c.getString(c.getColumnIndex("telefone")));
             alunoAux.setSite(c.getString(c.getColumnIndex("site")));
             alunoAux.setNota(c.getDouble(c.getColumnIndex("nota")));
+            alunoAux.setCaminhoFoto(c.getString(c.getColumnIndex("caminhoFoto")));
 
             lista.add(alunoAux);
         }
