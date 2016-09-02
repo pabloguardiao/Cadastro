@@ -74,7 +74,7 @@ public class FormularioHelper {
 
     public void carregarImagem(String localArquivoFoto) {
         Bitmap imgFoto = BitmapFactory.decodeFile(localArquivoFoto);
-        Bitmap imgMenor = Bitmap.createScaledBitmap(imgFoto, imgFoto.getWidth(), 300, true);
+        Bitmap imgMenor = Bitmap.createScaledBitmap(imgFoto, ivFoto.getWidth(), 300, true);
         imgFoto.recycle();
         ivFoto.setImageBitmap(imgMenor);
         ivFoto.setTag(localArquivoFoto);

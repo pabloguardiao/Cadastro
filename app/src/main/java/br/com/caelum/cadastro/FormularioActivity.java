@@ -31,7 +31,7 @@ public class FormularioActivity extends AppCompatActivity {
         helper.getBtFoto().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                localArquivoFoto = getExternalCacheDir() + "/" + System.currentTimeMillis() + ".jpg";
+                localArquivoFoto = getExternalFilesDir(null) + "/" + System.currentTimeMillis() + ".jpg";
                 Uri localFoto = Uri.fromFile(new File(localArquivoFoto));
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 intent.putExtra(MediaStore.EXTRA_OUTPUT, localFoto);

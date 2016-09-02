@@ -32,9 +32,10 @@ public class ListaAlunosActivity extends AppCompatActivity {
         setContentView(R.layout.activity_lista_alunos);
 
 //        List<Aluno> alunos = new AlunoDAO(this).getLista();
-        final ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this,
-                android.R.layout.simple_list_item_1, alunos);
+//        final ArrayAdapter<Aluno> adapter = new ArrayAdapter<Aluno>(this,
+//                android.R.layout.simple_list_item_1, alunos);
 
+        final ListaAlunosAdapter adapter = new ListaAlunosAdapter(alunos, this);
         listaAlunos = (ListView)findViewById(R.id.lista_alunos);
         listaAlunos.setAdapter(adapter);
 
@@ -85,6 +86,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemMapa = menu.add("Achar no mapa");
         MenuItem itemSite = menu.add("Navegar no site");
         MenuItem itemDeletar = menu.add("Deletar");
+        MenuItem itemEnviarNotas = menu.add("Enviar Notas");
 
         // Eventos
         Intent intent;
@@ -131,13 +133,26 @@ public class ListaAlunosActivity extends AppCompatActivity {
             }
         });
 
+        itemEnviarNotas.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
+                String json = new AlunoConverter().toJSON(dao.getLista());
+                Toast.makeText(ListaAlunosActivity.this, json, Toast.LENGTH_LONG).show();
+                return false;
+            }
+        });
+
         Permissao.verificarPermissao(this);
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
+        for (int i=0; i<permissions.length; i++) {
+            if (grantResults[i] == PackageManager.PERMISSION_DENIED) {
+                Toast.makeText(ListaAlunosActivity.this, permissions[i], Toast.LENGTH_SHORT).show();
+            }
         }
     }
 
