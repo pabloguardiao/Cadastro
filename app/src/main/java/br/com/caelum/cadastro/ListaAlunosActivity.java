@@ -136,9 +136,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         itemEnviarNotas.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-                AlunoDAO dao = new AlunoDAO(ListaAlunosActivity.this);
-                String json = new AlunoConverter().toJSON(dao.getLista());
-                Toast.makeText(ListaAlunosActivity.this, json, Toast.LENGTH_LONG).show();
+
+                new EnviaAlunosTask(ListaAlunosActivity.this).execute();
                 return false;
             }
         });
