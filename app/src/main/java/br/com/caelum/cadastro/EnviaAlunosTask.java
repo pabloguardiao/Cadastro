@@ -12,6 +12,7 @@ public class EnviaAlunosTask extends AsyncTask<Object, Object, String> {
 
     private final Context context;
     private ProgressDialog progress;
+    private String endereco = "https://www.caelum.com.br/mobile";
 
     public EnviaAlunosTask(Context context) {
         this.context = context;
@@ -29,7 +30,7 @@ public class EnviaAlunosTask extends AsyncTask<Object, Object, String> {
         AlunoDAO dao = new AlunoDAO(context);
         String json = new AlunoConverter().toJSON(dao.getLista());
 //                Toast.makeText(ListaAlunosActivity.this, json, Toast.LENGTH_LONG).show();
-        WebClient client = new WebClient();
+        WebClient client = new WebClient(endereco);
         String resposta = client.post(json);
         return resposta;
     }

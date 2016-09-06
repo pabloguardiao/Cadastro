@@ -68,11 +68,24 @@ public class ListaAlunosAdapter extends BaseAdapter {
             bm = BitmapFactory.decodeResource(activity.getResources(), R.drawable.ic_no_image);
         }
         ivFoto.setImageBitmap(Bitmap.createScaledBitmap(bm, 100, 100, true));
+
         if (position%2 == 0) {
             view.setBackgroundColor(activity.getResources().getColor(R.color.linha_par));
         } else {
             view.setBackgroundColor(activity.getResources().getColor(R.color.linha_impar));
         }
+
+        // Laytou Lateral
+        TextView txTelefone = (TextView)view.findViewById(R.id.item_telefone);
+        if (txTelefone != null) {
+            txTelefone.setText(aluno.getTelefone());
+        }
+
+        TextView txEndereco = (TextView)view.findViewById(R.id.item_endereco);
+        if (txEndereco != null) {
+            txEndereco.setText(aluno.getEndereco());
+        }
+
         return view;
     }
 }

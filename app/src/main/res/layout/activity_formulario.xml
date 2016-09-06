@@ -3,72 +3,72 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <LinearLayout
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+      <ImageView android:id="@+id/formulario_foto"
+          android:layout_width="match_parent"
+          android:layout_height="200dp"
+          android:background="#00A8EC"
+          android:src="@drawable/person"/>
+
+      <Button android:id="@+id/formulario_foto_button"
+          android:layout_width="56dp"
+          android:layout_height="56dp"
+          android:layout_alignParentBottom="true"
+          android:layout_alignParentRight="true"
+          android:layout_marginBottom="5dp"
+          android:layout_marginRight="20dp"
+          android:background="@drawable/formulario_foto_button"
+          android:elevation="5dp"
+          android:gravity="center"
+          android:textColor="#FFFFFF"
+          android:textSize="20sp"
+          />
+    </RelativeLayout>
+
+    <EditText android:id="@+id/nome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="10dp"
+        android:hint="Nome" />
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp">
+    <EditText android:id="@+id/telefone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Telefone" />
 
-            <ImageView android:id="@+id/formulario_foto"
-                android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="#00A8EC"
-                android:src="@drawable/person"/>
+    <EditText android:id="@+id/endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Endereco" />
 
-            <Button android:id="@+id/formulario_foto_button"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentRight="true"
-                android:layout_marginBottom="5dp"
-                android:layout_marginRight="20dp"
-                android:background="@drawable/formulario_foto_button"
-                android:elevation="5dp"
-                android:gravity="center"
-                android:textColor="#FFFFFF"
-                android:textSize="20sp"
-                />
-        </RelativeLayout>
+    <EditText android:id="@+id/site"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:hint="Site"/>
 
-        <EditText android:id="@+id/nome"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Nome" />
+    <RatingBar android:id="@+id/avaliacao"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:layout_gravity="center_horizontal"
+        android:numStars="5"
+        android:max="10"/>
 
-        <EditText android:id="@+id/telefone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Telefone" />
+    <Button android:id="@+id/botao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="INSERIR" />
 
-        <EditText android:id="@+id/endereco"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Endereco" />
-
-        <EditText android:id="@+id/site"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:hint="Site"/>
-
-        <RatingBar android:id="@+id/avaliacao"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="center_horizontal"
-            android:numStars="5"
-            android:max="10"/>
-
-        <Button android:id="@+id/botao"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="INSERIR" />
-
-    </LinearLayout>
+  </LinearLayout>
 </ScrollView>

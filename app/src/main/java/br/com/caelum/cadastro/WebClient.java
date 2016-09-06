@@ -10,10 +10,16 @@ import java.util.Scanner;
  */
 public class WebClient {
 
+    private String endereco;
+
+    public WebClient(String endereco) {
+        this.endereco = endereco;
+    }
+
     public String post(String json) {
         String jsonResposta = "";
         try {
-            URL url = new URL("https://www.caelum.com.br/mobile");
+            URL url = new URL(endereco);
             HttpURLConnection connection = (HttpURLConnection)url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Accept", "application/json");

@@ -18,6 +18,10 @@ public class AlunoConverter {
                 jsonStringer.object()
                         .key("id").value(aluno.getId())
                         .key("nome").value(aluno.getNome())
+                        .key("telefone").value(aluno.getTelefone())
+                        .key("site").value(aluno.getSite())
+                        .key("endereco").value(aluno.getEndereco())
+                        .key("nota").value(aluno.getNota())
                         .endObject();
             }
             jsonStringer.endArray().endObject().endArray().endObject();
