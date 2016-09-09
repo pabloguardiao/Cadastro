@@ -9,11 +9,9 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -87,6 +85,7 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemSite = menu.add("Navegar no site");
         MenuItem itemDeletar = menu.add("Deletar");
         MenuItem itemEnviarNotas = menu.add("Enviar Notas");
+        MenuItem itemReceberProvas = menu.add("Receber ProvasActivity");
 
         // Eventos
         Intent intent;
@@ -138,6 +137,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
 
                 new EnviaAlunosTask(ListaAlunosActivity.this).execute();
+                return false;
+            }
+        });
+
+        itemReceberProvas.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(ListaAlunosActivity.this, ProvasActivity.class);
+                startActivity(intent);
                 return false;
             }
         });
