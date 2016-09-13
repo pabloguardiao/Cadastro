@@ -27,14 +27,19 @@ public class ProvasActivity extends AppCompatActivity {
     }
 
     public void selecionarProva(Prova prova){
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (isTablet()) {
-            transaction
-                    .replace(R.id.lista_provas, new ListaProvasFragment())
-                    .replace(R.id.detalhes_provas, new DetalhesProvaFragment());
+            DetalhesProvaFragment detalhes = (DetalhesProvaFragment)getSupportFragmentManager().findFragmentById(R.id.detalhes_provas);
+            detalhes.popularCampos(prova);
         } else {
-            transaction.replace(R.id.provas_view, new ListaProvasFragment());
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            Bundle args = new Bundle();
+            args.putSerializable("prova", prova);
+
+            DetalhesProvaFragment detalhes = new DetalhesProvaFragment();
+            detalhes.setArguments(args);
+            transaction.replace(R.id.provas_view, detalhes);
+            transaction.addToBackStack(null);
+            transaction.commit();
         }
-        transaction.commit();
     }
 }

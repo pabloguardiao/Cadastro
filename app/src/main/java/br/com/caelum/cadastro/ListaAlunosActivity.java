@@ -85,7 +85,8 @@ public class ListaAlunosActivity extends AppCompatActivity {
         MenuItem itemSite = menu.add("Navegar no site");
         MenuItem itemDeletar = menu.add("Deletar");
         MenuItem itemEnviarNotas = menu.add("Enviar Notas");
-        MenuItem itemReceberProvas = menu.add("Receber ProvasActivity");
+        MenuItem itemReceberProvas = menu.add("Receber Provas");
+        MenuItem itemGeo = menu.add("Geo");
 
         // Eventos
         Intent intent;
@@ -145,6 +146,15 @@ public class ListaAlunosActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(MenuItem item) {
                 Intent intent = new Intent(ListaAlunosActivity.this, ProvasActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        itemGeo.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                Intent intent = new Intent(ListaAlunosActivity.this, MostraAlunosActivity.class);
                 startActivity(intent);
                 return false;
             }

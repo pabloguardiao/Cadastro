@@ -42,7 +42,7 @@ public class DetalhesProvaFragment extends Fragment {
         lvTopicos = (ListView) layout.findViewById(R.id.detalhe_prova_topicos);
     }
 
-    private void popularCampos(Prova prova) {
+    public void popularCampos(Prova prova) {
         if (prova != null) {
             tvMateria.setText(prova.getMateria());
             tvData.setText(prova.getData());
